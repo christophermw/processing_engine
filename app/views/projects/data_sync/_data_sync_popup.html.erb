@@ -1,0 +1,24 @@
+<div id="data_sync_popup" class="popup hidden">
+  <div class="overlay_bg"></div>
+  <div class="overlay" style="width: 750px;">
+    <div class="popup_header">
+      <div class="dib header_title">Add Data Sync</div>
+      <div class="dib icon_close_blue fl-rt mrt-10 mtop-10 popup_closer"></div>
+      <div class="clearboth"></div>
+    </div>
+    <div class="content_area">
+      <div id="data_sync_area" class="dark_contentBox mbtm-15">
+        <div id="data_sync_type" class="contentBox mbtm-10">
+          <%= render partial: 'projects/data_sync/data_sync_type' %>
+        </div>
+        <div id="data_sync_mapping" class="contentBox hidden">
+           <%= render partial: 'projects/data_sync/data_sync_mapping' %>
+        </div>
+      </div>
+    </div>
+    <div class="button_holder">
+      <div class="dib button active mrt-15" id="save_data_syc">Save</div>
+      <div class="dib button normal popup_closer">Close</div>
+    </div>
+  </div>
+</div>

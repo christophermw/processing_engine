@@ -1,0 +1,10 @@
+<div class="cond_sub_def_entry">
+  <%= hidden_field_tag "project[fields_attributes][0][conditional_field_values_attributes][#{cfv_idx}][conditions_attributes][#{idx}][id]", condition.id %>
+  <%= hidden_field_tag "project[fields_attributes][0][conditional_field_values_attributes][#{cfv_idx}][conditions_attributes][#{idx}][position]", condition.position, class: "cond_position" %>
+  <%= hidden_field_tag "project[fields_attributes][0][conditional_field_values_attributes][#{cfv_idx}][conditions_attributes][#{idx}][_destroy]", nil, class: "destroy_cond_sub_def_entry" %>
+  <div><%= select_tag "project[fields_attributes][0][conditional_field_values_attributes][#{cfv_idx}][conditions_attributes][#{idx}][previous_condition_operator]", options_for_select(Condition::JOINING_OPERATORS, condition.previous_condition_operator), class: "w-55 mtop-3 mbtm-3 mlt-15 and_or_dropdown #{idx == 0 ? 'hidden' : ''}" %></div>
+  <%= select_tag "project[fields_attributes][0][conditional_field_values_attributes][#{cfv_idx}][conditions_attributes][#{idx}][field1_id]", options_from_collection_for_select(@fields, :id, :name, condition.field1_id), class: "dib w-150 mrt-10" %>
+  <%= select_tag "project[fields_attributes][0][conditional_field_values_attributes][#{cfv_idx}][conditions_attributes][#{idx}][operator]", options_for_select(Condition::OPERATORS, condition.operator), class: "dib w-80 mrt-10" %>
+  <%= text_field_tag "project[fields_attributes][0][conditional_field_values_attributes][#{cfv_idx}][conditions_attributes][#{idx}][alternate_value]", condition.alternate_value, class: "dib w-150 mrt-10" %>
+  <div class="icon icon_close_red dib mbtm3 remove_cond_sub_def_entry"></div>
+</div>

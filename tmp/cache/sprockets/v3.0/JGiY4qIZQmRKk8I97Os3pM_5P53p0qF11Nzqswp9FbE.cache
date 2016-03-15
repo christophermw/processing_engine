@@ -1,0 +1,47 @@
+I"´(function() {
+  $('body').on('click', '#add_profile_field', function() {
+    return showPopup('#profile_field_popup');
+  });
+
+  $('.popup_closer').click(function() {
+    return $(this).closest('.popup').hide();
+  });
+
+  $('body').on('change', '#field_type_box .field_type', function() {
+    var selected;
+    selected = $(this).val();
+    $('#field_type_box .up_field_option').hide();
+    return $('#' + selected + '_box').show();
+  });
+
+  $('body').on('click', '#add_calculated_cond', function() {
+    var condition;
+    condition = $('#calculated_field_cond_template').html();
+    $('#cal_field_def_area').append(condition);
+    $('#cal_field_def_area .calculated_and_or_dropdown:first').hide();
+    return $('#cal_field_def_area').show();
+  });
+
+  $('body').on('click', '.remove_cal_def_entry', function(event) {
+    var parent_box, target, total_condtions;
+    target = $(event.target);
+    parent_box = $(this).closest('.cal_def_entry');
+    if (target.is(".remove_cal_def_entry:first")) {
+      $(parent_box).next('.cal_def_entry').find('.calculated_and_or_dropdown').hide();
+    }
+    $(parent_box).remove();
+    total_condtions = $('#cal_field_def_area .cal_def_entry').length;
+    if (total_condtions < 2) {
+      $('.calculated_and_or_dropdown').hide();
+    }
+    if (total_condtions < 1) {
+      return $('#cal_field_def_area').hide();
+    }
+  });
+
+  $(window).resize(function() {
+    return showPopup('#profile_field_popup');
+  });
+
+}).call(this);
+:ET

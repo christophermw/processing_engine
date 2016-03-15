@@ -1,0 +1,13 @@
+<div class="reset_timer_condition mbtm-6 trigger_sub_condition condition_row">
+  <%= select_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][conditions_attributes][#{idx}][previous_condition_operator]", options_for_select(Condition::JOINING_OPERATORS, condition.previous_condition_operator), class: "mbtm-5 mlt-25 w-60 reset_timer_add_or_dropdown #{idx == 0 ? 'hidden' : ''} chosen-select" %>
+  <br />
+  <%= select_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][conditions_attributes][#{idx}][field1_id]", options_from_collection_for_select(@fields, :id, :name, condition.field1_id), class: "w-150 mrt-10 dib field1_id chosen-select" %>
+  <%= select_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][conditions_attributes][#{idx}][operator]", options_for_select(Condition::OPERATORS, condition.operator), class: "w-60 dib mrt-10 chosen-select" %>
+  <%= select_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][conditions_attributes][#{idx}][operand_option]", options_for_select(Condition::OPERAND_OPTIONS, condition.operand_option), class: 'dib w-80 mrt-10 operand_option chosen-select' %>
+  <%= select_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][conditions_attributes][#{idx}][field2_id]", options_from_collection_for_select(@fields, :id, :name, condition.field2_id), include_blank: true, class: "w-150 dib field2_id cond_end chosen-select #{condition.use_field_value? ? '' : 'hidden'}" %>
+  <%= text_field_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][conditions_attributes][#{idx}][alternate_value]", condition.alternate_value, class: "w-150 alternate_value cond_end #{condition.use_alternate_value? ? '' : 'hidden'}" %>
+  <%= hidden_field_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][conditions_attributes][#{idx}][position]", condition.position, class: "position" %>
+  <%= hidden_field_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][conditions_attributes][#{idx}][id]", condition.id %>
+  <%= hidden_field_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][conditions_attributes][#{idx}][_destroy]", nil, class: "destroy_reset_timer_condition" %>
+  <div class="icon icon_close_red dib mlt-6 mbtm3 remove_reset_timer_condition"></div>
+</div>

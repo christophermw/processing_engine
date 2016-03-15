@@ -1,0 +1,26 @@
+<% content_for :site_nav do %>
+  <%= render partial: "projects/wizard_menu" %>
+<% end %>
+<div id="wrapper">
+  <div class="page_content">
+    <div class="content_header">Manage Tags: <span><%= @project.name %></span></div>
+    <%= render partial: "projects/tags/existing_tag_list" %>
+  </div>
+
+  <div class="btn_container">
+    <%= link_to "Next", user_profile_project_path(@project), class: "button active", id:"tag_next" %>
+    <%= link_to "Close", projects_path, class: "button normal close_project" %>
+  </div>
+</div>
+
+<div id="add_tag_popup_container"></div>
+
+<% content_for :js_commands do %>
+  <script type="text/javascript">
+   window.new_tag_url = '<%= new_project_tag_url(@project) %>';
+    window.base_tag_url = '/projects/'+'<%= @project.id %>' + '/tags/';
+    window.update_tags_url = '<%= update_tags_project_url(@project) %>';
+    window.field_names_and_ids = <%= raw @field_names_and_ids.to_json %>;
+    window.fields_by_name = <%= raw @fields_by_name.to_json %>;
+  </script>
+<% end %>

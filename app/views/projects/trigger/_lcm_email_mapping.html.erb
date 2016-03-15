@@ -1,0 +1,16 @@
+<div class="mapping_entry mbtm-6">
+  <div class="column column1 mlt-15">
+    <%= radio_button_tag "project[triggers_attributes][0][lcm_insert_action_attributes][data][primary_key]", mapping['tag_field'], @lcm_insert_action_data['primary_key'] && @lcm_insert_action_data['primary_key'] == mapping['tag_field'], class: "primary_key" %>
+  </div>
+  <div class="column column1">
+    <%= radio_button_tag "project[triggers_attributes][0][lcm_insert_action_attributes][data][contact_id]", mapping['tag_field'], @lcm_insert_action_data['primary_key'] && @lcm_insert_action_data['contact_id'] == mapping['tag_field'] %>
+  </div>
+  <%= select_tag "project[triggers_attributes][0][lcm_insert_action_attributes][data][mapping][#{idx}][tag_field]", options_for_select(@fields.collect(&:name), mapping['tag_field']), class: "column column2 mbtm3 mlt10 lcm_tag_field", prompt: "Select a field" %>
+  <div class="column column3 icon icon_gray_arrow mtop-6"></div>
+  <% if @lcm_insert_action_data['lcm_source_option'] == '1' %>
+    <%= select_tag "project[triggers_attributes][0][lcm_insert_action_attributes][data][mapping][#{idx}][lcm_field]", options_for_select(@data_source_fields[@lcm_insert_action_data['data_source_id']], mapping['lcm_field']), class: "column column4 lcm_fields", prompt: "Select a field" %>
+  <% else %>
+    <%= select_tag "project[triggers_attributes][0][lcm_insert_action_attributes][data][mapping][#{idx}][lcm_field]", options_for_select(@data_source_fields[@lcm_insert_action_data['extension_id']], mapping['lcm_field']), class: "column column4 lcm_fields", prompt: "Select a field" %>
+  <% end %>
+  <div class="dib icon icon_close_red mlt-10 mbtm3 remove_lcm_mapping" style="cursor: pointer"></div>
+</div>

@@ -1,0 +1,24 @@
+<%= render partial: "projects/wizard_menu" %>
+<div id="wrapper" style="width: 940px">
+  <div class="page_content">
+    <div class="content_header">User Profile: <span><%= @project.name %></span></div>
+    <div id="user_profile_table">
+      <%= render partial: 'projects/user_profile/user_profile_table' %>
+    </div>
+  </div>
+
+  <div class="btn_container">
+    <%= link_to "Next", triggers_project_path(@project), class: "button active", id:"user_profile_next" %>
+    <%= link_to "Close", '', class: "button normal close_project" %>
+  </div>
+</div>
+
+<div id="add_profile_field_popup_container"></div>
+
+<% content_for :js_commands do %>
+  <script type="text/javascript">
+    window.new_field_url = '<%= new_project_field_url(@project) %>';
+    window.base_field_url = '/projects/'+'<%= @project.id %>' + '/fields/';
+    window.update_profile_fields_url = '<%= update_profile_fields_project_url(@project) %>';
+  </script>
+<% end %>

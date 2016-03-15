@@ -1,0 +1,25 @@
+<% unless @project.new_record? %>
+  <%= link_to [step.to_sym, @project] do %>
+    <li id="wizard_<%= step %>" class="step <%= html_class %>">
+      <div class="back"></div>
+      <div class="middle">
+        <div>
+          <span><%= menu_text %></span><div class="stepTrackerIcon set-up" alt="Set-up">
+        </div>
+        </div>
+        <div class="point"></div>
+      </div>
+    </li>
+  <% end %>
+<% else %>
+  <li id="wizard_<%= step %>" class="step <%= html_class %>">
+    <div class="back"></div>
+    <div class="middle">
+      <div>
+        <span><%= menu_text %></span><div class="stepTrackerIcon set-up" alt="Set-up">
+      </div>
+      </div>
+      <div class="point"></div>
+    </div>
+  </li>
+<% end %>

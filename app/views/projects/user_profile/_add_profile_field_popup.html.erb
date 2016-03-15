@@ -1,0 +1,52 @@
+<div id="profile_field_popup" class="popup hidden">
+  <div class="overlay_bg"></div>
+  <div class="overlay" style="width: 720px;">
+    <div class="popup_header">
+      <div class="dib header_title">Add Profile Field</div>
+      <div class="dib icon_close_blue fl-rt mrt-10 mtop-10 popup_closer"></div>
+      <div class="clearboth"></div>
+    </div>
+    <div class="content_area">
+      <%= form_tag update_profile_fields_project_url(@project), id: "profile_fields_form" do %>
+        <%= hidden_field_tag "project[fields_attributes][0][id]", @field.id %>
+        <div class="strong mbtm-6">Basic Details</div>
+        <div class="dark_contentBox mbtm-10">
+          <div class="mbtm-10">
+            <span class="w-70 dib tar mrt-6">Field Name</span>
+            <%= text_field_tag 'project[fields_attributes][0][name]', @field.name, class: "w-300", id: "field_name" %>
+          </div>
+          <div class="mbtm-10">
+            <span class="w-70 dib tar mrt-6">Data Type</span>
+            <%= select_tag 'project[fields_attributes][0][datatype]', options_for_select(Field::DATATYPES, @field.datatype), class: "w-304" %>
+          </div>
+        </div>
+
+        <div class="strong mbtm-6">Field Type</div>
+        <div class="dark_contentBox">
+          <div id="field_type_box">
+            <div class="calculated_field_area">
+              <div class="mbtm-6">
+                <%= radio_button_tag 'project[fields_attributes][0][type]', 'CalculatedField', @field.calculated_field?, class: "field_type mtop3" %>
+                <span>Calculated Field</span>
+              </div>
+               <%= render partial: 'projects/user_profile/calculated_field' %>
+            </div>
+            <div class="conditional_field_area">
+              <div class="mbtm-6">
+                <%= radio_button_tag 'project[fields_attributes][0][type]', 'ConditionalField', @field.conditional_field?, class: "field_type mtop3" %>
+                <span>Segmentation Field</span>
+              </div>
+              <%= render partial: 'projects/user_profile/conditional_field' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="button_holder">
+      <div class="dib button active mrt-15" id="save_profile_field">Save</div>
+      <div class="dib button normal popup_closer">Close</div>
+    </div>
+  </div>
+</div>
+
+

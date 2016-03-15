@@ -1,0 +1,57 @@
+.btn_container
+{
+  position: fixed;
+  margin:0;
+  bottom:0px;
+  width: 100%;
+  height: 20px;
+  padding: 10px 0 5px 15px;
+  background: #dae3ea;
+}
+.button{
+  margin-right:15px;
+  font: 12px Arial;
+  text-decoration: none;
+  padding: 3px 24px;
+  border: 1px solid;
+  vertical-align: middle;
+  background: transparent;
+  color: #303030;
+  cursor: default;
+}
+.button.normal {
+  border-color: #9d9d9d;
+  background: #e9e9e9;
+}
+
+.button.normal:hover{
+  border-color:#929292;
+  background: #dddddd;
+}
+
+.button.active {
+  border-color: #6aa2c2;
+  background: #bcdef1;
+}
+.button.active:hover{
+  border-color:#5594b7;
+  background: #aed6ed;
+}
+.button.inactive {
+  border-color: #c4c4c4;
+  background: #f2f2f2;
+  color:#a4a4a4 !important;
+}
+.button.launch {
+  border-color: #dd963b;
+  background: #f6cfa4;
+}
+.button.launch:hover {
+  border-color: #d48826;
+  background: #ffc489;
+}
+.button.popup_active_btn
+{
+border-color:#709bbd;
+background:#d2e4f0;
+}

@@ -1,0 +1,51 @@
+<div class="mbtm-6">
+  <div class="dib icon <%= @trigger.actions.any? ? 'icon_collapse' : 'icon_expand' %> w-16 mbtm3 exp_col_button"></div>
+  <div class="mbtm-6 strong dib">Execution</div>
+  <div class="dark_contentBox collapsible_box mbtm-6 <%= @trigger.actions.any? ? '' : 'hidden' %>">
+    <div class="send_email_box mbtm-6 execution_option_box">
+      <div class="dib">
+        <%= hidden_field_tag "project[triggers_attributes][0][email_action_attributes][_destroy]", true %>
+        <%= hidden_field_tag "project[triggers_attributes][0][email_action_attributes][id]", @email_action.try(:id) %>
+        <%= check_box_tag "project[triggers_attributes][0][email_action_attributes][_destroy]", false, @email_action.present?, class: "execution_option" %>
+        <span class="mrt-6 execution_option_label">Send Email</span>
+        <%= select_tag "project[triggers_attributes][0][email_action_attributes][data][mailing_id]", options_from_collection_for_select(@transactional_mailings, :first, :last, @email_action_data['mailing_id']), class: "w-300 execution_option_dropdown #{@email_action ? '' : 'hidden' }", id: "send_email", include_blank: true %>
+      </div>
+      <div class="mapping_box mtop-6 contentBox mlt-25 mbtm-15 <%= @email_action_data['mailing_id'].present? ? '' : 'hidden' %>" style="padding: 5px 10px;">
+        <div class="mrt-15 dib">Mapped Fields: <span id="email_mapped_field">0</span></div>
+        <a id="mapped_email_field" class="dib" style="cursor: pointer">
+          <div class="icon icon_edit dib mrt-3 w-16 mbtm3"></div>
+          <div class="dib blue_text">Map Email Fields*</div>
+        </a>
+      </div>
+    </div>
+    <div class="lcm_box mbtm-6 execution_option_box">
+      <div class="dib">
+        <%= hidden_field_tag "project[triggers_attributes][0][lcm_insert_action_attributes][_destroy]", true %>
+        <%= hidden_field_tag "project[triggers_attributes][0][lcm_insert_action_attributes][id]", @lcm_insert_action.try(:id) %>
+        <%= check_box_tag "project[triggers_attributes][0][lcm_insert_action_attributes][_destroy]", false, @lcm_insert_action.present?, class: "execution_option" %>
+        <span class="mrt-6 execution_option_label">Insert into LCM Program</span>
+        <%= select_tag "project[triggers_attributes][0][lcm_insert_action_attributes][data][program_id]", options_from_collection_for_select(@programs, :first, :last, @lcm_insert_action_data['program_id']), class: "w-300 execution_option_dropdown #{@lcm_insert_action ? '' : 'hidden' }", prompt: "Select LCM Program" %>
+      </div>
+      <div id="lcm_data_source_box" class="mlt-25 mtop-6 contentBox <%= @lcm_insert_action_data['program_id'].present? ? '' : 'hidden' %>">
+        <div class="lcm_source_option_box mbtm-6">
+          <%= radio_button_tag "project[triggers_attributes][0][lcm_insert_action_attributes][data][lcm_source_option]", 1, @lcm_insert_action_data['lcm_source_option'] == "1", class: "lcm_source_option" %>
+          <span class="mrt-6">LCM Data Source</span>
+          <%= select_tag "project[triggers_attributes][0][lcm_insert_action_attributes][data][data_source_id]", options_from_collection_for_select(@internal_data_sources, :first, :last, @lcm_insert_action_data['data_source_id']), id: "lcm_data_source", class: "w-300 lcm_source_option_dropdown #{'hidden' if @lcm_insert_action_data['lcm_source_option'] != '1'}", prompt: "Select Data Source" %>
+        </div>
+        <div class="lcm_source_option_box">
+          <%= radio_button_tag "project[triggers_attributes][0][lcm_insert_action_attributes][data][lcm_source_option]", 2, @lcm_insert_action_data['lcm_source_option'] == "2", class: "lcm_source_option" %>
+          <span class="mrt-6">LCM Extension</span>
+          <%= select_tag "project[triggers_attributes][0][lcm_insert_action_attributes][data][extension_id]", options_from_collection_for_select(@extensions, :first, :last, @lcm_insert_action_data['extension_id']), id: "lcm_extension", class: "w-300 lcm_source_option_dropdown #{'hidden' if @lcm_insert_action_data['lcm_source_option'] != '2'}", prompt: "Select an Extension" %>
+        </div>
+        <div id="lcm_mapping_box" class="<%= @lcm_insert_action_data['data_source_id'].present? ? '' : 'hidden' %>">
+          <div class="sep mtop-10 mbtm-10"></div>
+          <div class="mrt-15 dib">Mapped Fields: <span id="lcm_mapped_field">0</span></div>
+          <a id="mapped_lcm_field" class="dib" style="cursor: pointer">
+            <div class="icon icon_edit dib mrt-3 w-16 mbtm3"></div>
+            <div class="dib blue_text">Map LCM Fields*</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

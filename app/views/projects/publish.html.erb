@@ -1,0 +1,19 @@
+<%= render partial: "projects/wizard_menu" %>
+<div id="wrapper">
+  <div class="page_content">
+    <div class="content_header">Profile: <span><%= @project.name %></span></div>
+    <div>Add the following html to your webpages where you would like the events to be fired.</div>
+    <div class="mbtm-10">Be Sure to replace the "XXXXX"s with information specific the user and event.</div>
+    <% @tags.each do |t| %>
+      <div class="mbtm-25 dark_contentBox">
+        <div class="strong mbtm-5"><%= t.name %></div>
+        <%= tracking_pixel(t, t.fields) %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="btn_container">
+    <%= link_to "Next", "tags", class: "button active", id:"user_profile_next" %>
+    <%= link_to "Close", '', class: "button normal close_project" %>
+  </div>
+</div>

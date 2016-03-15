@@ -1,0 +1,32 @@
+<div>
+  <ul class="wizardList">
+    <%= render partial: "menu_item", locals: { menu_text: "1. Set Up", step: "edit", html_class: "first"} %>
+    <%= render partial: "menu_item", locals: { menu_text: "2. Tags", step: "tags", html_class: ""} %>
+    <%= render partial: "menu_item", locals: { menu_text: "3. User Profile", step: "user_profile", html_class: ""} %>
+    <%= render partial: "menu_item", locals: { menu_text: "4. Triggers", step: "triggers", html_class: ""} %>
+    <%= render partial: "menu_item", locals: { menu_text: "5. Data Sync", step: "data_sync", html_class: ""} %>
+    <%= render partial: "menu_item", locals: { menu_text: "6. Publish", step: "publish", html_class: "last"} %>
+  </ul>
+</div>
+
+<% content_for :js_commands do %>
+  <script>
+    $(document).ready(function(){
+      var location = window.location.href;
+      if (location.lastIndexOf('?') < 0) {
+        location.replace('#',''); // # needs to be stripped because they don't affect the location
+        var loc = location.substring(location.lastIndexOf('/')+1);
+      }
+      else
+        var loc = location.substring(location.lastIndexOf('/')+1, location.lastIndexOf('?'));
+      if (loc == "new")
+        // The edit menu item should be highlighted when on the new page
+        loc = "edit"
+      loc = "#wizard_" + loc;
+      $(loc).addClass('active');
+
+    })
+
+  </script>
+
+<% end %>

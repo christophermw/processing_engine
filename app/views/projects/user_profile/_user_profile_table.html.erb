@@ -1,0 +1,36 @@
+<div class="contentBox" id="user_profile_table_area">
+  <div id="add_profile_field" class="button active dib">Add Field</div>
+  <div class="sep mtop-10 mbtm-10"></div>
+
+  <div id="user_profile_table">
+    <div id="table_header">
+      <div class="field field_1">#</div>
+      <div class="field field_2">Field Name</div>
+      <div class="field field_3">Type</div>
+      <div class="field field_4">Based On</div>
+      <div class="field field_5">Data Type</div>
+      <div class="field field_6">Created on</div>
+      <div class="field field_7">Updated on</div>
+      <div class="clearboth"></div>
+    </div>
+    <div class="inline-table">
+      <% @fields.each_with_index do |f,idx| %>
+        <%= render partial: 'projects/user_profile/user_profile_entry', locals: { field: f, idx: idx + 1 } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<template id="user_profile_entry">
+  <div class="field_entry">
+    <div class="field field_1">1.</div>
+    <div class="field field_2">Product_name</div>
+    <div class="field field_3">Tag</div>
+    <div class="field field_4"></div>
+    <div class="field field_5"><select class="w-140" disabled ><option>String</option></select></div>
+    <div class="field field_6">11/12/2015 13:05</div>
+    <div class="field field_7">11/12/2015 13:05</div>
+    <div class="clearboth"></div>
+  </div>
+</template>

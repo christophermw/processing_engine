@@ -1,0 +1,76 @@
+I"	(function() {
+  var addFieldEntry, removeFieldEntry;
+
+  $('body').on('click', '#add_data_sync', function() {
+    return showPopup('#data_sync_popup');
+  });
+
+  $('.popup_closer').click(function() {
+    return $(this).closest('.popup').hide();
+  });
+
+  $('body').on('change', '.event_dropdown', function() {
+    $('#data_sync_mapping').hide();
+    if ($(this).val() !== '') {
+      return $('#data_sync_mapping').show();
+    }
+  });
+
+  $('body').on('click', '.data_source_option', function() {
+    $('#data_sync_mapping_area .dark_contentBox').hide();
+    return $(this).closest('.data_source_sync_box').find('.data_source_area').show();
+  });
+
+  $('body').on('change', '.data_source_area .ds_type', function() {
+    var current_id, selected_val;
+    current_id = $(this).attr('id');
+    selected_val = $(this).find('option:selected').text();
+    return $('.' + current_id + '_text').html(selected_val);
+  });
+
+  addFieldEntry = function(id) {
+    var field_entry, new_entry;
+    switch (id) {
+      case "add_new_ids_field":
+        $('#new_ids_fields_table').show();
+        new_entry = $('#new_ids_field_entry').html();
+        return $('#new_ids_fields_table #new_ids_fields_box').append(new_entry);
+      case "add_ext_ids_field":
+        $('#ext_ids_fields_table').show();
+        field_entry = $('#ext_ds_field_new_entry').html();
+        return $('#ext_ids_fields_table #fields_section').append(field_entry);
+    }
+  };
+
+  removeFieldEntry = function(target) {
+    var parent_entry, parent_table, selected_option, total_fields;
+    parent_entry = $(target).closest('.field_entry');
+    $(parent_entry).remove();
+    selected_option = $('input[name="data_source_option"]:checked').val();
+    switch (selected_option) {
+      case 'new':
+        parent_table = '#new_ids_fields_table';
+        break;
+      case 'ext':
+        parent_table = '#ext_ids_fields_table';
+    }
+    total_fields = $(parent_table + ' .field_entry').length;
+    if (total_fields < 1) {
+      return $(parent_table).hide();
+    }
+  };
+
+  $('body').on('click', '.add_field_entry', function() {
+    var id;
+    id = $(this).attr('id');
+    return addFieldEntry(id);
+  });
+
+  $('body').on('click', '.remove_field_entry', function() {
+    var target;
+    target = $(this);
+    return removeFieldEntry(target);
+  });
+
+}).call(this);
+:ET

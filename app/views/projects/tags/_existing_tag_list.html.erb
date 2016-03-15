@@ -1,0 +1,29 @@
+<div id="existing_tags_area">
+<!--  <div class="strong mbtm-6">Tags: <span>3</span></div> -->
+  <div class="light_contentBox" id="existing_tags_box">
+    <div class="table_header">
+     <div class="column tag_name">Tag Name</div>
+      <div class="column fields">Fields</div>
+      <div class="column status">Status</div>
+      <div class="column created_by">Created By</div>
+      <div class="column created_on">Created On</div>
+      <div class="column modified">Last Modified</div>
+    </div>
+      <% @tags.each do |tag| %>
+        <div class="tag_entry mbtm-6" data-attr-id="1">
+          <div class="icon icon_edit dib w-16 mlt-6 mrt-6 edit_tag" data-id="<%= tag.id %>"></div>
+          <div class="column tag_name"><%= tag.name %></div>
+          <div class="column fields"><%= tag.fields.count %></div>
+          <div class="column status active">Active</div>
+          <div class="column created_by">Bob Miller</div>
+          <div class="column created_on"><%= tag.created_at.strftime('%m/%d/%Y %l:%M') %></div>
+          <div class="column modified"><%= tag.updated_at.strftime('%m/%d/%Y %l:%M') %></div>
+          <div class="mtop-6 mbtm-6 sep"></div>
+        </div>
+      <% end %>
+  </div>
+  <div class="mtop-10 mbtm-10">
+    <div class="button normal dib popup_opener" id="add_tag">Add Tag</div>
+  </div>
+</div>
+</div>

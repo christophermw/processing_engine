@@ -1,0 +1,46 @@
+<%= content_for :css_commands do %>
+  <style>
+   #new_ids_fields_table .table_header{font-weight: bold;padding-left: 0 !important;margin-bottom: 3px !important;}
+   #new_ids_fields_table .field1{margin-left: 10px;width: 70px;display: inline-block}
+   #new_ids_fields_table .field2{width:200px;margin-left: 25px;display: inline-block}
+   #new_ids_fields_table .field3{width:200px;margin-left: 35px;display: inline-block}
+   .new_field_entry{margin-bottom: 5px;}
+   #new_ids_fields_table .new_ids_field_text{width: 196px !important;}
+  </style>
+<% end %>
+
+
+<div id="new_data_source_area" class="dark_contentBox mlt-20 mtop-6 mbtm-15 hidden data_source_area">
+  <div class="data_source_type">
+    <span>Data source type</span>
+    <select id="new_ds_type" class="ds_type">
+      <option value="ids">IDS</option>
+      <option value="ext">Extension</option>
+    </select>
+    <input type="text" name="new_ds_name" class="w-300 mlt-3" />
+  </div>
+  <div id="new_ds_fields_area" class="mtop-10">
+    <div id="new_ids_fields_table" class="white_contentBox">
+      <div class="table_header">
+        <span class="field1">Primary Key</span>
+        <span class="field2">User Profile Fields</span>
+        <span class="field3"><span class="new_ds_type_text"></span> Column</span>
+      </div>
+      <div id="new_ids_fields_box">
+        <%= render partial: 'projects/data_sync/new_ds_field_entry' %>
+      </div>
+    </div>
+    <div id="add_new_ids_field" class="button popup_active_btn dib mtop-10 cp add_field_entry">Add Field</div>
+  </div>
+</div>
+
+
+<template id="new_ids_field_entry">
+  <div class="field_entry" style="padding-top: 3px;">
+    <input type="radio" class="field1" />
+    <input type="text" class="field2 new_ids_field_text" />
+    <span class="field3">Column Name</span>
+    <span class="dib icon icon_close_gray mbtm3 remove_field_entry"></span>
+    <div class="sep mtop-3"></div>
+  </div>
+</template>

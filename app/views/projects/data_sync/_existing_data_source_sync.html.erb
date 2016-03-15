@@ -1,0 +1,63 @@
+<%= content_for :css_commands do %>
+  <style>
+    #ext_ids_fields_table .field {padding: 10px 0px 10px 5px;height: 10px;margin: 0;}
+    #ext_ids_fields_table .field1{width:175px;border-right: 1px solid #C8C8C8;display: inline-block}
+    #ext_ids_fields_table .field2{width:73px;display: inline-block;}
+    #ext_data_source_area .entry.last .field{border-bottom: none;}
+    .center_column{margin-left:10px;margin-right:10px;display: inline-block;width: 25px;}
+    .border{border:1px solid #C8C8C8}
+    .btm_border{border-bottom:1px solid #C8C8C8}
+    .no_top{border-top:none !important;}
+
+  </style>
+<% end %>
+
+<div id="ext_data_source_area" class="dark_contentBox mlt-20 mtop-6 mbtm-15 data_source_area hidden">
+  <div class="data_source_type">
+    <span>1) Data source type</span>
+    <select id="ext_ds_type" class="ds_type">
+      <option value="ids">IDS</option>
+      <option value="ext">Extension</option>
+    </select>
+    <select type="text" class="w-300 mlt-6"></select>
+
+    <div class="mtop-6">2) Map user profile fields to the <span class="ext_ds_type_text"></span> fields</div>
+  </div>
+  <div id="ext_ds_fields_area" class="mtop-10">
+    <div id="ext_ids_fields_table" class="white_contentBox" style="padding: 10px">
+       <div id="header_section">
+         <div class="up_field_header light_contentBox dib left_column" style="padding: 0;">
+           <div class="strong field btm_border">User Profile Fields</div>
+           <div class="strong field field1">Field Name</div>
+           <div class="strong field field2">Data Type</div>
+         </div>
+         <div class="center_column big_arrow" style="margin-bottom: -7px;"></div>
+         <div class="ds_field_header light_contentBox dib right_column" style="padding: 0;">
+           <div class="strong field btm_border"><span class="ext_ds_type_text"></span>: Test IDS</div>
+           <span class="strong field field1">Field Name</span>
+           <span class="strong field field2">Data Type</span>
+         </div>
+       </div>
+      <div id="fields_section">
+        <%= render partial: 'projects/data_sync/ext_ds_field_entry' %>
+      </div>
+    </div>
+  </div>
+  <div id="add_ext_ids_field" class="button popup_active_btn dib mtop-10 cp add_field_entry">Add Field</div>
+</div>
+
+
+
+<template id="ext_ds_field_new_entry">
+  <div class="field_entry">
+    <div class="left_column up_fields dib border no_top">
+      <span class="field field1"><input type="text" class="w-160 mtop3" /></span>
+      <span class="field field2">TEXT</span>
+    </div>
+    <div class="center_column icon icon_close_gray remove_field_entry mbtm5"></div>
+    <div class="right_column ds_fields dib border no_top">
+      <span class="field field1"><select class="w-160 mtop3"></select></span>
+      <span class="field field2">TEXT</span>
+    </div>
+  </div>
+</template>

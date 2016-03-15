@@ -1,0 +1,19 @@
+
+<div class="wait_for_wrapper mbtm-6">
+  <div class="dib icon <%= @trigger.delay_enabled? ? 'icon_collapse' : 'icon_expand' %> w-16 mbtm3 exp_col_button"></div>
+  <div class="mbtm-6 strong dib">Wait for</div>
+  <div class="dark_contentBox collapsible_box mbtm-15 <%= @trigger.delay_enabled? ? '' : 'hidden' %>">
+    <%= hidden_field_tag "project[triggers_attributes][0][delay_enabled]", "0" %>
+    <%= check_box_tag "project[triggers_attributes][0][delay_enabled]", "1", @trigger.delay_enabled, id: "enable_trigger_delay" %>
+    <span>Enable Trigger Delay</span>
+
+    <div id="trigger_delay_wrapper" class="mtop-6 contentBox mlt-20 <%= @trigger.delay_enabled? ? '' : 'hidden' %>">
+      <div id="wait_for_options_wrapper"><%= render partial: "projects/trigger/wait_for_options" %></div>
+      <div id="wait_for_reset_timer_wrapper"><%= render partial: "projects/trigger/reset_timer" %></div>
+    </div>
+
+  </div>
+</div>
+
+
+

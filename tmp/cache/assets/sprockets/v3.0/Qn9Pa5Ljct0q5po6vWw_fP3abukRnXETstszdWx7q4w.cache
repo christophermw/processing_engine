@@ -1,0 +1,95 @@
+I"£(function() {
+  var addLcmMapping;
+
+  addLcmMapping = function() {
+    var idx, template;
+    template = Handlebars.compile($('#lcm_email_mapping_entry').html());
+    idx = $("#lcm_program_popup #map_row_area .mapping_entry").length + 1;
+    $('#lcm_program_popup #map_row_area').append(template({
+      idx: idx
+    }));
+    return $('#lcm_program_popup .mapping_label').show();
+  };
+
+  $('body').on('click', '.remove_lcm_mapping', function() {
+    $(this).closest('.mapping_entry').remove();
+    if ($('#lcm_program_popup .mapping_entry').length < 1) {
+      return $('#lcm_program_popup .mapping_label').hide();
+    }
+  });
+
+  $('body').on('change', '.lcm_tag_field', function() {
+    var new_value, primary_key_radio_button;
+    new_value = $(this).val();
+    primary_key_radio_button = $(this).closest('.mapping_entry').find('.primary_key');
+    return primary_key_radio_button.val(new_value);
+  });
+
+  $('body').on('click', '.exp_col_button', function(event) {
+    if ($(this).hasClass('icon_collapse')) {
+      $(this).parent().find('.collapsible_box').hide();
+      return $(this).removeClass('icon_collapse').addClass('icon_expand');
+    } else {
+      $(this).parent().find('.collapsible_box').show();
+      return $(this).removeClass('icon_expand').addClass('icon_collapse');
+    }
+  });
+
+  $(window).resize(function() {
+    return showPopup('#add_trigger_popup');
+  });
+
+  $('body').on('click', '#save_trigger', function() {
+    $("#add_trigger_popup #trigger_condition_area .position ").each(function(index) {
+      return $(this).val(index);
+    });
+    return $.ajax({
+      url: window.update_triggers_url,
+      dataType: "json",
+      data: $('#trigger_form').serialize(),
+      type: "POST",
+      success: function(data, status, xhr) {
+        return window.location.reload();
+      }
+    });
+  });
+
+  $('.edit_trigger_entry').click(function() {
+    var id;
+    id = $(this).attr('id');
+    return $.ajax({
+      url: window.base_trigger_url + id + '/edit',
+      dataType: "json",
+      async: false,
+      success: function(data, status, xhr) {
+        $('#add_trigger_popup_container').html(data.html);
+        activateChosen();
+        $('.chosen-select.hidden').hide();
+        return showPopup('#add_trigger_popup');
+      }
+    });
+  });
+
+  $('body').on('click', '#save_email_mapping', function() {
+    return $(this).closest('.popup').hide();
+  });
+
+  $('body').on('click', '.close_send_email_popup', function() {
+    $('#send_email_popup #map_row_area').empty();
+    return $(this).closest('.popup').hide();
+  });
+
+  $('body').on('change', '.condition_row .operand_option', function() {
+    var parent_box, selected_option;
+    parent_box = $(this).closest('.condition_row');
+    $(parent_box).find('.cond_end').hide();
+    selected_option = $(this).val();
+    if (selected_option === '1') {
+      return $(parent_box).find('div.field2_id').show();
+    } else {
+      return $(parent_box).find('.alternate_value').show();
+    }
+  });
+
+}).call(this);
+:ET

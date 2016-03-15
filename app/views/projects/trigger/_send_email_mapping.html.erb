@@ -1,0 +1,9 @@
+<div class="mapping_entry mbtm-6">
+  <div class="column column1">
+    <%= radio_button_tag "project[triggers_attributes][0][email_action_attributes][data][email_field]", idx, @email_action_data['email_field'] == idx %>
+  </div>
+  <%= select_tag "project[triggers_attributes][0][email_action_attributes][data][mapping][#{idx}][tag_field]", options_for_select(@fields.collect(&:name), mapping['tag_field']), class: "column column2 mbtm3", prompt: "Select a field" %>
+  <div class="column column3 icon icon_gray_arrow mtop-6"></div>
+  <%= select_tag "project[triggers_attributes][0][email_action_attributes][data][mapping][#{idx}][mailing_field]", options_for_select(@transactional_mailing_fields[@email_action_data['mailing_id']], mapping['mailing_field']), class: "column column4 mailing_fields", prompt: "Select a field" %>
+  <div class="dib icon icon_close_red mlt-10 mbtm3 remove_email_mapping" style="cursor: pointer"></div>
+</div>

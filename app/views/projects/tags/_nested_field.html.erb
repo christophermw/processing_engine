@@ -1,0 +1,9 @@
+<div class="nested_field_entry mbtm-6">
+  <%= hidden_field_tag "project[tags_attributes][0][fields_attributes][#{parent_idx}][fields_attributes][#{idx}][type]", "EventField" %>
+  <%= hidden_field_tag "project[tags_attributes][0][fields_attributes][#{parent_idx}][fields_attributes][#{idx}][id]", field.id %>
+  <%= hidden_field_tag "project[tags_attributes][0][fields_attributes][#{parent_idx}][fields_attributes][#{idx}][project_id]", @project.id %>
+  <%= hidden_field_tag "project[tags_attributes][0][fields_attributes][#{parent_idx}][fields_attributes][#{idx}][_destroy]", nil, class: "destroy_nested_field" %>
+  <%= text_field_tag "project[tags_attributes][0][fields_attributes][#{parent_idx}][fields_attributes][#{idx}][name]", field.name, class: "mrt-15 w-280" %>
+  <%= select_tag "project[tags_attributes][0][fields_attributes][#{parent_idx}][fields_attributes][#{idx}][datatype]", options_for_select(Field::NESTED_DATATYPES, field.datatype), class: "mlt-10 w-120" %>
+  <div class="icon icon_close_gray remove_nested_field_entry"></div>
+</div>

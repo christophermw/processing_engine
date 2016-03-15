@@ -1,0 +1,26 @@
+<%= render partial: "projects/wizard_menu" %>
+<div id="wrapper" style="width:850px;">
+  <div class="page_content">
+    <div class="content_header">Triggers: <span><%= @project.name %></span></div>
+    <div id="trigger_list">
+      <%= render partial: 'projects/trigger/trigger_table' %>
+    </div>
+  </div>
+  <div id="add_trigger_popup_container"></div>
+
+  <div class="btn_container">
+    <%= link_to "Next", data_sync_project_path(@project), class: "button active", id:"trigger_next" %>
+    <%= link_to "Save", "trigger", class: "button normal", id:"trigger_next" %>
+    <%= link_to "Close", '', class: "button normal close_project" %>
+  </div>
+</div>
+
+<% content_for :js_commands do %>
+  <script type="text/javascript">
+    window.new_trigger_url = '<%= new_project_trigger_url(@project) %>';
+    window.base_trigger_url = '/projects/'+'<%= @project.id %>' + '/triggers/';
+    window.update_triggers_url = '<%= update_triggers_project_url(@project) %>';
+    window.transactional_mailing_fields = <%= raw @transactional_mailing_fields.to_json %>;
+    window.data_source_fields = <%= raw @data_source_fields.to_json %>;
+  </script>
+<% end %>

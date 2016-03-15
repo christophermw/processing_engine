@@ -1,0 +1,14 @@
+<div class="mbtm-10 reset_timer_trigger">
+  <%= hidden_field_tag "trigger_index", rt_idx, class: "trigger_index" %>
+  <%= hidden_field_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][project_id]", @project.id %>
+  <%= hidden_field_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][id]", reset_timer_trigger.try(:id) %>
+  <%= label_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][tag_id]", 'Event', class: "label dib" %>
+  <%= select_tag "project[triggers_attributes][0][reset_triggers_attributes][#{rt_idx}][tag_id]", options_from_collection_for_select(@tags, :id, :name, reset_timer_trigger.try(:tag_id)), class: "w-300", id: "main_trigger_event" %>
+  <div class="grayText">Define one or more conditions to reset "Wait For" timer</div>
+  <div class="reset_timer_condition_area mbtm-20 mtop-10">
+    <% reset_timer_trigger.conditions.each_with_index do |c, i| %>
+      <%= render partial: 'projects/trigger/reset_timer_condition', locals: { condition: c, idx: i, rt_idx: rt_idx } %>
+    <% end %>
+  </div>
+  <div class="button popup_active_btn dib add_reset_timer_condition" style="padding: 3px 10px;cursor: pointer">+ Condition</div>
+</div>

@@ -1,0 +1,40 @@
+<div class="contentBox" id="trigger_table_area">
+  <div id="add_trigger" class="button active dib popup_opener">Add Trigger</div>
+  <div class="sep mtop-10 mbtm-10"></div>
+  <div id="trigger_table">
+    <div id="table_header">
+      <div class="field field_1">Name</div>
+      <div class="field field_2">Conditions</div>
+      <div class="field field_3">Wait For</div>
+      <div class="field field_4">Tx Email</div>
+      <div class="field field_5">LCM Insert</div>
+      <div class="field field_6">Data Export</div>
+      <div class="field field_7">Created on</div>
+      <div class="field field_8">Updated on</div>
+      <div class="field field_9"></div>
+      <div class="clearboth"></div>
+    </div>
+    <div class="inline-table">
+      <% @triggers.each do |t| %>
+        <%= render partial: "projects/trigger/trigger_entry", locals: { trigger: t } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<template id="trigger_entry_template">
+  <div class="trigger_entry">
+    <div class="field field_1 edit_trigger_entry" style="cursor: pointer"><span class="dib icon icon_edit w-16 mrt-6 mbtm5"></span><span class="edit_link dib t_name"></span></div>
+    <div class="field field_2 tac t_conditions"></div>
+    <div class="field field_3 tac greenText t_wait_for"></div>
+    <div class="field field_4 tac greenText t_tx_email"></div>
+    <div class="field field_5 tac redText t_lcm_insert"></div>
+    <div class="field field_6 tac redText t_data_export"></div>
+    <div class="field field_7 t_created_at"></div>
+    <div class="field field_8 t_updated_at"></div>
+    <div class="field field_9"><span class="dib icon icon_close_red mlt-10 mtop3 delete_trigger"></span> </div>
+    <div class="clearboth"></div>
+  </div>
+</template>
+

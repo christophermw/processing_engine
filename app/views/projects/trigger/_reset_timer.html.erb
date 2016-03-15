@@ -1,0 +1,22 @@
+<div id="reset_timer_box">
+  <%= hidden_field_tag "project[triggers_attributes][0][delay_reset_enabled]", "0" %>
+  <%= check_box_tag "project[triggers_attributes][0][delay_reset_enabled]", "1", @trigger.delay_reset_enabled, id: "enable_reset_timer" %>Reset "Wait For" timer
+  <div id="reset_timer_condition_wrapper" class="mtop-3 mlt-20 <%= @trigger.delay_reset_enabled? ? '' : 'hidden' %>">
+    <div id="reset_timer_trigger_box">
+      <div id="reset_timer_triggers_area">
+        <% @reset_triggers.each_with_index do |r,i| %>
+          <%= render partial: 'projects/trigger/reset_timer_trigger', locals: { reset_timer_trigger: r, rt_idx: i } %>
+        <% end %>
+      </div>
+      <div class="mbtm-6 button popup_active_btn dib" style="padding: 3px 10px;" id="add_reset_timer_trigger">+ Event</div>
+    </div>
+  </div>
+</div>
+
+<template id="reset_timer_trigger_template">
+  <%= render partial: 'projects/trigger/reset_timer_trigger', locals: { reset_timer_trigger: ResetTrigger.new, rt_idx: "{{rt_idx}}" } %>
+</template>
+
+<template id="reset_timer_condition_template">
+  <%= render partial: 'projects/trigger/reset_timer_condition', locals: { condition: Condition.new, idx: "{{idx}}", rt_idx: "{{rt_idx}}" } %>
+</template>

@@ -1,0 +1,9 @@
+<div class ="cal_def_entry mtop-6 mbtm-6">
+  <%= hidden_field_tag "project[fields_attributes][0][expressions_attributes][#{idx}][id]", expression.id %>
+  <%= hidden_field_tag "project[fields_attributes][0][expressions_attributes][#{idx}][position]", expression.position, class: 'position' %>
+  <%= select_tag "project[fields_attributes][0][expressions_attributes][#{idx}][operator]", options_for_select(Expression::OPERATORS, expression.operator), class: 'dib w-80 mrt-10 chosen-select' %>
+  <%= select_tag "project[fields_attributes][0][expressions_attributes][#{idx}][operand_option]", options_for_select(Expression::OPERAND_OPTIONS, expression.operand_option), class: 'dib w-130 mrt-10 sub_rule_option chosen-select' %>
+  <%= select_tag "project[fields_attributes][0][expressions_attributes][#{idx}][field_id]", options_from_collection_for_select(@fields, :id, :name, expression.field_id), class: "dib w-150 mrt-10 sub_rule sub_rule_1 chosen-select #{expression.use_field_value? ? '' : 'hidden'}" %>
+  <%= text_field_tag "project[fields_attributes][0][expressions_attributes][#{idx}][alternate_value]", expression.alternate_value, class: "w-146 mrt-10 sub_rule sub_rule_2 #{expression.use_alternate_value? ? '' : 'hidden'}" %>
+  <div class="icon icon_close_red dib mbtm3 remove_cal_def_entry"></div>
+</div>

@@ -1,0 +1,53 @@
+I"ü(function() {
+  this.showPopup = function(popup_id) {
+    var WH, WW, height, left, top, width;
+    $(popup_id).show();
+    WW = $(window).width();
+    WH = $(window).height();
+    width = WW * 1;
+    height = WH * 1;
+    top = (WH - $(popup_id + " .overlay").height()) / 2;
+    left = (WW - $(popup_id + " .overlay").width()) / 2;
+    console.log("Left" + left + "Top" + top + "Width" + width(+"Height" + height));
+    top = 30;
+    $(popup_id + " .content_area").css({
+      maxHeight: WH - 200,
+      overflow: "auto",
+      padding: "15px",
+      margin: "10px 10px 25px 0"
+    });
+    switch (popup_id) {
+      case "#add_tag_popup":
+        $(popup_id + " #fields_entry_area").css({
+          maxHeight: WH - 415,
+          overflow: "auto",
+          paddingRight: "10px"
+        });
+        $(popup_id + " #fields_box").css({
+          minHeight: 10,
+          overflow: "auto"
+        });
+        break;
+      case "#add_trigger_popup":
+        $(popup_id + " #trigger_area").css({
+          minHeight: 10,
+          overflow: "auto"
+        });
+        break;
+      case "#send_email_popup":
+      case "#lcm_program_popup":
+        $(popup_id + " #map_row_area").css({
+          maxHeight: WH - 340,
+          overflow: "auto"
+        });
+    }
+    return $(popup_id + " .overlay").css({
+      top: top + window.pageYOffset || document.documentElement.scrollTop,
+      left: left + window.pageXOffset || document.documentElement.scrollLeft,
+      maxHeight: WH - 75,
+      overflow: "hidden"
+    });
+  };
+
+}).call(this);
+:ET

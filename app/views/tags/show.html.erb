@@ -1,0 +1,6 @@
+<h2><%= @tag.name %> Tag</h2>
+
+<%= tracking_pixel(@tag, @tag_fields) %>
+<%= link_to 'Test', test_tag_path(@tag), target: '_blank' %>
+<br>
+<%= link_to 'View Profiles', profiles_path, taget: '_blank' %>

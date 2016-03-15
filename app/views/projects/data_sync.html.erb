@@ -1,0 +1,17 @@
+<%= render partial: "projects/wizard_menu" %>
+<div id="wrapper" style="width:850px;">
+  <div class="page_content">
+    <div class="content_header">Data Sync: <span>Test Project</span></div>
+
+  <div id="data_sync_list" class="dark_contentBox">
+    <%= render partial: 'projects/data_sync/data_sync_table' %>
+  </div>
+  </div>
+
+  <div class="btn_container">
+    <%= link_to "Next", publish_project_path(@project), class: "button active", id:"user_profile_next" %>
+    <%= link_to "Close", '', class: "button normal close_project" %>
+  </div>
+</div>
+
+<%= render partial: 'projects/data_sync/data_sync_popup' %>

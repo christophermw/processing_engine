@@ -1,0 +1,32 @@
+<div class="mbtm-6">
+  <div class="dib icon icon_collapse w-16 mbtm3 exp_col_button"></div>
+  <div class="dib mbtm-6 strong">Conditions: <span id="trigger_condition"><%= @conditions.count %></span></div>
+  <div class="dark_contentBox collapsible_box mbtm-15">
+      <div>Define one or more conditions for trigger</div>
+      <div id="trigger_condition_area">
+        <% @conditions.each_with_index do |c, i| %>
+          <%= render partial: 'projects/trigger/condition', locals: { condition: c, idx: i } %>
+        <% end %>
+      </div>
+      <div id="add_condition" class="mtop-25 button popup_active_btn dib" style="padding: 3px 10px;cursor: pointer">+ Condition</div>
+  </div>
+</div>
+
+<template id="condition_box_template" class="hidden">
+  <%= render partial: 'projects/trigger/condition', locals: { condition: Condition.new, idx: "{{idx}}" } %>
+</template>
+
+<template id="sub_condition_template">
+  <div class="sub_condition mtop-10" style="margin-left: 192px;">
+    <span class="mrt-10">Or</span>
+    <input type="hidden" name="project[triggers_attributes][0][conditions_attributes][{{idx}}][previous_condition_operator]" value="or">
+    <input type="hidden" name="project[triggers_attributes][0][conditions_attributes][{{idx}}][field1_id]" value="{{field1_id}}" class="field1_id">
+    <%= select_tag "project[triggers_attributes][0][conditions_attributes][{{idx}}][operator]", options_for_select(Condition::OPERATORS), class: "w-80 dib mrt-15" %>
+    <div class="inline field2_box">
+      <%= select_tag "project[triggers_attributes][0][conditions_attributes][{{idx}}][field2_id]", options_from_collection_for_select(@fields, :id, :name), include_blank: true, class: "w-180 dib field2_id chosen-select" %>
+      <%= hidden_field_tag "project[triggers_attributes][0][conditions_attributes][{{idx}}][alternate_value]", nil, class: "alternate_value" %>
+    </div>
+    <input type="hidden" class="position" name="project[triggers_attributes][0][conditions_attributes][{{idx}}][position]"/>
+    <span class="dib icon icon_close_red mbtm3 remove_sub_condition"></span>
+  </div>
+</template>

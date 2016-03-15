@@ -1,0 +1,16 @@
+<div class="mbtm-10 wait_for_trigger">
+  <%= hidden_field_tag "trigger_index", dt_idx, class: "trigger_index" %>
+  <%= hidden_field_tag "project[triggers_attributes][0][delayed_triggers_attributes][#{dt_idx}][project_id]", @project.id %>
+  <%= hidden_field_tag "project[triggers_attributes][0][delayed_triggers_attributes][#{dt_idx}][id]", delayed_trigger.try(:id) %>
+  <%= label_tag "project[triggers_attributes][0][delayed_triggers_attributes][#{dt_idx}][tag_id]", 'Event', class: "label dib" %>
+  <%= select_tag "project[triggers_attributes][0][delayed_triggers_attributes][#{dt_idx}][tag_id]", options_from_collection_for_select(@tags, :id, :name, delayed_trigger.try(:tag_id)), class: "w-300", include_blank: true %>
+  <div class="wait_for_condition_box">
+    <div class="wait_for_condition_area">
+      <% delayed_trigger.conditions.each_with_index do |c, i| %>
+        <%= render partial: 'projects/trigger/wait_for_condition', locals: { condition: c, idx: i, dt_idx: dt_idx } %>
+      <% end %>
+    </div>
+    <div class="mtop-6 button popup_active_btn dib add_wait_for_condition" style="padding: 3px 10px;">+ Condition</div>
+    <div class="sep mbtm-6 mtop-10"></div>
+  </div>
+</div>

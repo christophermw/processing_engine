@@ -1,0 +1,25 @@
+<div class="field_entry mtop-6">
+  <div class="tags_fields"></div>
+  <%= hidden_field_tag "project[tags_attributes][0][fields_attributes][#{idx}][id]", field.id, class: "field_id" %>
+  <%= hidden_field_tag "project[tags_attributes][0][fields_attributes][#{idx}][project_id]", @project.id %>
+  <%= hidden_field_tag "project[tags_attributes][0][fields_attributes][#{idx}][name]", field.name, class: "field_name" %>
+  <%= hidden_field_tag "project[tags_attributes][0][fields_attributes][#{idx}][datatype]", field.datatype, class: "data_type_value" %>
+  <%= hidden_field_tag "project[tags_attributes][0][fields_attributes][#{idx}][_destroy]", nil, class: "destroy_field" %>
+  <%= hidden_field_tag "field_index", idx, class: "field_index" %>
+  <div class="dib mrt-6 icon icon_collapse nested_box_btn w-16 hidden" style="margin-bottom: -16px;"></div>
+  <div style="margin-left: 20px;">
+    <%= select_tag nil, options_for_select(@field_names_and_ids.keys, field.name), include_blank: true, class: "field flexselect" %>
+    <%= select_tag nil, options_for_select(Field::DATATYPES, field.datatype), class: "data_type mlt-10" %>
+    <div class="icon icon_close_gray remove_field_entry"></div>
+  </div>
+  <% if field.datatype == "Nested" %>
+    <div class="nested_fields_area inline-container mtop-6 mbtm-10 mlt-30 <%= field.datatype == 'Nested' ? '' : 'hidden' %>" style="padding: 10px 0 10px 10px;width: 480px;">
+      <div class="nested_fields">
+        <% field.fields.each_with_index do |f, i| %>
+          <%= render partial: "projects/tags/nested_field", locals: { field: f, idx: i, parent_idx: idx } %>
+        <% end %>
+      </div>
+      <div class="button popup_active_btn dib add_nested mtop-10" style="padding: 0 5px;cursor: pointer">+</div>
+    </div>
+  <% end %>
+</div>

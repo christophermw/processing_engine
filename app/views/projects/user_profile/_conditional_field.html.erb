@@ -1,0 +1,21 @@
+<div id="conditional_field_box" class="light_contentBox mbtm-10 mlt-25 up_field_option <%= @field.conditional_field? ? '' : 'hidden' %>">
+<div class="strong mbtm-6">Field Definition</div>
+<div id="conditional_def_area">
+  <% if @field.conditional_field_values.any? %>
+    <% @field.conditional_field_values.includes(:conditions).each_with_index do |cfv, i| %>
+     <%= render partial: 'projects/user_profile/conditional_field_value', locals: { conditional_field_value: cfv, cfv_idx: i } %>
+    <% end %>
+  <% else %>
+    <%= render partial: 'projects/user_profile/conditional_field_value', locals: { conditional_field_value: ConditionalFieldValue.new, cfv_idx: 0 } %>
+  <% end %>
+</div>
+  <div id="add_conditional_def" class="button popup_active_btn dib mtop-10 cp" style="padding: 3px 8px">+ Condition</div>
+</div>
+
+<template id="cond_field_sub_def_template">
+  <%= render partial: 'projects/user_profile/condition', locals: { condition: Condition.new, idx: "{{idx}}", cfv_idx: "{{cfv_idx}}" } %>
+</template>
+
+<template id="cond_field_def_template">
+  <%= render partial: 'projects/user_profile/conditional_field_value', locals: { conditional_field_value: ConditionalFieldValue.new, cfv_idx: "{{cfv_idx}}" } %>
+</template>

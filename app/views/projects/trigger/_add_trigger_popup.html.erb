@@ -1,0 +1,43 @@
+<div id="add_trigger_popup" class="popup hidden">
+  <div class="overlay_bg"></div>
+  <div class="overlay" style="width: 640px;">
+    <div class="popup_header">
+      <div class="dib header_title">Add Trigger</div>
+      <div class="dib icon_close_blue fl-rt mrt-10 mtop-10 popup_closer"></div>
+      <div class="clearboth"></div>
+    </div>
+    <div class="content_area">
+      <%= form_tag update_triggers_project_url(@project), id: "trigger_form" do %>
+        <div id="trigger_area" class="dark_contentBox mbtm-15">
+          <%= hidden_field_tag 'project[triggers_attributes][0][id]', @trigger.id %>
+          <div class="mbtm-10">
+            <%= label_tag 'project[triggers_attributes][0][name]', 'Name', class: "label dib" %>
+            <%= text_field_tag 'project[triggers_attributes][0][name]', @trigger.name, class: "w-500" %>
+          </div>
+          <div>
+            <%= label_tag 'project[triggers_attributes][0][tag_id]', 'Event', class: "label dib" %>
+            <%= select_tag 'project[triggers_attributes][0][tag_id]', options_from_collection_for_select(@tags, :id, :name, @trigger.tag_id), class: "w-504", id: "main_trigger_event" %>
+          </div>
+        </div>
+
+      <%= render partial: 'projects/trigger/conditions' %>
+      <%= render partial: 'projects/trigger/wait_for' %>
+      <%= render partial: 'projects/trigger/trigger_execution' %>
+      <%= render partial: 'projects/trigger/trigger_email_popup' %>
+      <%= render partial: 'projects/trigger/lcm_program_popup' %>
+      <%= render partial: 'projects/trigger/trigger_data_export' %>
+
+      <% end %>
+      <div id="send_email_mapping_entry" class="hidden">
+        <%= render partial: "projects/trigger/send_email_mapping", locals: {idx: "{{idx}}", mapping: {} } %>
+      </div>
+      <div id="lcm_email_mapping_entry" class="hidden">
+        <%= render partial: "projects/trigger/lcm_email_mapping", locals: {idx: "{{idx}}", mapping: {}} %>
+      </div>
+    </div>
+    <div class="button_holder">
+      <div class="dib button active mrt-15" id="save_trigger">Save</div>
+      <div class="dib button normal popup_closer">Close</div>
+    </div>
+  </div>
+</div>

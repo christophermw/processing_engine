@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <style>
+    #page_top_cnt {
+        padding: 10px 0px 10px 35px;
+        margin-bottom: 15px;
+        font-size:12px;
+        color: #303030;
+        border-radius: 5px;
+        -webkit-border-radius:5px;
+        -ms-border-radius:5px;
+        width: 500px;
+        margin: 0 auto;
+    }
+    .save_error{
+        background:url(/assets/icon_alert.png),#F4E0DC;
+        border:1px solid #e7b7b7;
+        background-position: 10px 10px,0 0;
+        background-repeat: no-repeat,no-repeat;
+    }
+    #loadallylink{
+        color:#1c818a !important;
+        text-decoration: none;
+    }
+    #loadallylink:hover{
+        text-decoration: underline;
+    }
+    #page_top_cnt div{
+         margin-bottom: 10px;
+     }
+    </style>
+      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+      <script src="//cdn.jsdelivr.net/jquery.cookie/1.4.1/jquery.cookie.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $("#load_events_link").click(function(){
+            link = '<%= login_path(params.merge( login: true )) %>';
+            loginWindow = window.open(link,'',"width=1,height=1,top=1,left=1");
+          });
+        })
+      </script>
+  </head>
+  <body>
+  <div id="page_top_cnt" class="save_error" style="margin: 0 auto;width: 500px">
+    <div style="color:#af2316;;font-weight: bold">Invalid or Missing Cookie</div>
+    <div>Your browser may be blocking third parties from creating cookies.</div>
+    <div style="margin-bottom: 15px">Click the link below to try to create a cookie in order to use Events.</div>
+    <%= link_to 'Continue to application', '#', :id => :load_events_link %>
+  </div>
+  </body>
+</html>

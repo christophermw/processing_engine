@@ -1,0 +1,7 @@
+<div class="default_timezone">
+  <div class="strong mbtm-6">Default Timezone</div>
+  <div class="contentBox">
+    <span class="mrt-6 label w-70 dib">Timezone:</span>
+    <%= f.select :time_zone, Project::TIME_ZONES, {}, { id: "default_timezone_dropdown", class: "w-500" } %>
+  </div>
+</div>

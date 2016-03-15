@@ -1,0 +1,23 @@
+<div class="cond_def">
+  <div class="mtop-10 mbtm-6 strong or_label <%= cfv_idx == 0 ? 'hidden' : '' %>">Or</div>
+  <div class="dark_contentBox">
+    <%= hidden_field_tag "project[fields_attributes][0][conditional_field_values_attributes][#{cfv_idx}][id]", conditional_field_value.id %>
+    <%= hidden_field_tag "project[fields_attributes][0][conditional_field_values_attributes][#{cfv_idx}][position]", cfv_idx, class: "position" %>
+    <%= hidden_field_tag "project[fields_attributes][0][conditional_field_values_attributes][#{cfv_idx}][_destroy]", nil, class: "destroy_cond_def" %>
+    <div class="fl-rt icon icon_close_red mtop30 mrt10 remove_cond_def"></div>
+    <div class="def_area">
+      <% if conditional_field_value.conditions.any? %>
+        <% conditional_field_value.conditions.each_with_index do |c, i| %>
+          <%= render partial: 'projects/user_profile/condition', locals: { condition: c, idx: i, cfv_idx: cfv_idx } %>
+        <% end %>
+      <% else %>
+        <%= render partial: 'projects/user_profile/condition', locals: { condition: Condition.new, idx: 0, cfv_idx: cfv_idx } %>
+      <% end %>
+    </div>
+    <div class="add_cond_sub_def button popup_active_btn dib mtop-10 cp" style="padding: 0px 8px">+</div>
+    <div class="sep mtop-10 mbtm-10"></div>
+    <div class="value_area">
+      <span>Set </span><%= text_field_tag "", @field.name, class: "grayText field_name", readonly: true %><span> = </span><%= text_field_tag "project[fields_attributes][0][conditional_field_values_attributes][#{cfv_idx}][value]", conditional_field_value.value, class: "field_value" %>
+    </div>
+  </div>
+</div>

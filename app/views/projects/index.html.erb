@@ -1,0 +1,15 @@
+<div id="wrapper">
+  <div class="page_content">
+    <div>
+      <%= link_to 'New Project', new_project_path %>
+    </div>
+    <h2>Projects</h2>
+    <div>
+      <% @projects.each do |p| %>
+        <div>
+          <%= link_to p.name, edit_project_path(p) %>
+        </div>
+      <% end %>
+    </div>
+  <div>
+</div>

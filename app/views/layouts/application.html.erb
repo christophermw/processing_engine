@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Events</title>
+
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= yield :css_commands %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="project_wrapper">
+  <%= yield :site_nav %>
+  <div id="project_content">
+    <%= yield %>
+  </div>
+</div>
+
+<!-- Javascripts
+    ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+ <%= javascript_include_tag "application","data-turbolinks-track" => true %>
+<%= javascript_include_tag @js_file,"data-turbolinks-track" => true unless @js_file.nil? %>
+<%= yield :js_commands %>
+</body>
+</html>
+

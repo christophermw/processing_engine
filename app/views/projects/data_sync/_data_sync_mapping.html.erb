@@ -1,0 +1,10 @@
+<div id="data_sync_mapping_area">
+  <div class="new_data_source mbtm-6 data_source_sync_box">
+    <input type="radio" name="data_source_option" class="data_source_option" value="new" />Create new MS data source
+    <%= render partial: 'projects/data_sync/new_data_source_sync' %>
+  </div>
+  <div class="existing_data_source data_source_sync_box">
+    <input type="radio" name="data_source_option" class="data_source_option" value="ext" />Sync to existing data source
+    <%= render partial: 'projects/data_sync/existing_data_source_sync' %>
+  </div>
+</div>

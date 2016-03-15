@@ -1,0 +1,21 @@
+<div class="condition_box">
+  <%= select_tag "project[triggers_attributes][0][conditions_attributes][#{idx}][previous_condition_operator]", options_for_select(Condition::JOINING_OPERATORS, condition.previous_condition_operator), class: "mtop-20 w-60 and_or_dropdown mlt-25 #{idx == 0 ? 'hidden' : ''} chosen-select" %>
+  <br />
+  <div class="fl-rt icon icon_close_red remove_condition mtop10"></div>
+  <div class="clearboth"></div>
+  <div class="contentBox condition" style="border: 1px solid #d6d6d6;padding-bottom: 0px;">
+    <div class="condition_area">
+      <div class="sub_condition condition_row">
+        <%= select_tag "project[triggers_attributes][0][conditions_attributes][#{idx}][field1_id]", options_from_collection_for_select(@fields, :id, :name, condition.field1_id), class: "w-180 mrt-10 dib field1_id chosen-select" %>
+        <%= select_tag "project[triggers_attributes][0][conditions_attributes][#{idx}][operator]", options_for_select(Condition::OPERATORS, condition.operator), class: "w-60 dib mrt-10 chosen-select" %>
+        <%= select_tag "project[triggers_attributes][0][conditions_attributes][#{idx}][operand_option]", options_for_select(Condition::OPERAND_OPTIONS, condition.operand_option), class: 'dib w-80 mrt-10 operand_option chosen-select' %>
+        <%= select_tag "project[triggers_attributes][0][conditions_attributes][#{idx}][field2_id]", options_from_collection_for_select(@fields, :id, :name, condition.field2_id), include_blank: true, class: "w-180 dib field2_id cond_end chosen-select #{condition.use_field_value? ? '' : 'hidden'}" %>
+        <%= text_field_tag "project[triggers_attributes][0][conditions_attributes][#{idx}][alternate_value]", condition.alternate_value, class: "alternate_value cond_end #{condition.use_alternate_value? ? '' : 'hidden'}" %>
+        <%= hidden_field_tag "project[triggers_attributes][0][conditions_attributes][#{idx}][position]", condition.position, class: "position" %>
+        <%= hidden_field_tag "project[triggers_attributes][0][conditions_attributes][#{idx}][id]", condition.id %>
+        <%= hidden_field_tag "project[triggers_attributes][0][conditions_attributes][#{idx}][_destroy]", nil, class: "destroy_condition" %>
+      </div>
+    </div>
+    <div class="button popup_active_btn dib mtop-10 strong add_sub_condition"  style="padding: 1px 5px;margin:15px 15px -10px;border-color: #f0f2f3;background: #ddd;cursor: pointer">+</div>
+  </div>
+</div>

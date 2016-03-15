@@ -1,0 +1,57 @@
+<style>
+  #send_email_popup .mapping_label div{font-weight: bold;}
+  #send_email_popup .column {display: inline-block;}
+  #send_email_popup .column1{width:40px;}
+  #send_email_popup .column2{width:150px;margin-left: 10px;}
+  #send_email_popup .column3{width:30px;margin: 0 10px -5px 10px;}
+  #send_email_popup .column4{width:150px;}
+</style>
+<div id="send_email_popup" class="hidden popup">
+  <div class="overlay_bg" style="z-index: 2"></div>
+  <div id="overlay" class="overlay" style="left:15px;top:15px;">
+    <div class="popup_header">
+      <div class="dib header_title">Map Tag to Email Fields</div>
+      <div class="dib icon_close_blue fl-rt mrt-10 mtop-10 popup_closer"></div>
+      <div class="clearboth"></div>
+    </div>
+    <div class="content_area">
+      <div class="mapping_area">
+        <div class="mbtm-10 dib">Pass data to the mailing by mapping tag and mailing fields:</div>
+        <div class="fl-rt">
+          <div class='button popup_active_btn fl-lt mrt-0 mlt-25 mtop3' id="add_all">Auto-map Fields</div>
+          <div class="tooltip fl-lt mlt-6 auto_map_help"></div>
+        </div>
+        <div class="clearboth mbtm-6"></div>
+
+        <div id="map_row_box" class="dark_contentBox">
+          <div id="mapping_area" class="mbtm-25">
+            <div class="mapping_label mbtm-3">
+              <div class="column column1">Email</div>
+              <div class="column column2 mlt-10">Tag Fields</div>
+              <div class="column column4" style="margin-left: 55px;">Mailing Fields</div>
+            </div>
+
+            <div id="map_row_area">
+              <% if @email_action_data['mapping'] && @email_action_data['mapping'].any? %>
+                <% @email_action_data['mapping'].each do |k, mapping| %>
+                  <%= render partial: "projects/trigger/send_email_mapping", locals: {idx: k, mapping: mapping} %>
+                <% end %>
+              <% else %>
+                <%= render partial: "projects/trigger/send_email_mapping", locals: {idx: 0, mapping: {} } %>
+              <% end %>
+            </div>
+          </div>
+          <div id="add_email_mapping" class="button popup_active_btn dib" style="padding:3px 5px;cursor: pointer">+ Map Field</div>
+        </div>
+      </div>
+    </div>
+    <div class="button_holder">
+      <div class="dib button active mrt-15" id="save_email_mapping">Save</div>
+      <div class="dib button normal close_send_email_popup">Close</div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="help_box hidden" id="auto_map_tooltip_help">Upon clicking the "Auto-map Fields" button, the application will try to match all tag fields to fields from the selected email template. All tag fields will be listed and where possible the matching email field mappings will be shown. Any email fields that could not be matched will be shown as "Select Field". To complete the field mapping, select the appropriate email fields or remove that tag field from the mapping list. </div>

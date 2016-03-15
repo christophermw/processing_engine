@@ -1,0 +1,12 @@
+<div class="trigger_entry">
+  <div class="field field_1 edit_trigger_entry" style="cursor: pointer" id="<%= trigger.id %>"><span class="dib icon icon_edit w-16 mrt-6 mbtm5"></span><span class="edit_link dib t_name"><%= truncate(trigger.name, length: 20) %></span></div>
+  <div class="field field_2 tac t_conditions"><%= trigger.conditions.count %></div>
+  <div class="field field_3 tac <%= trigger.delay_enabled? ? 'greenText' : 'redText' %> t_wait_for "><%= trigger.delay_enabled? ? 'Yes' : 'No' %></div>
+  <div class="field field_4 tac greenText t_tx_email">Yes</div>
+  <div class="field field_5 tac redText t_lcm_insert">No</div>
+  <div class="field field_6 tac redText t_data_export">No</div>
+  <div class="field field_7 t_created_at"><%= trigger.created_at.strftime('%m/%d/%Y %l:%M') %></div>
+  <div class="field field_8 t_updated_at"><%= trigger.updated_at.strftime('%m/%d/%Y %l:%M') %></div>
+  <div class="field field_9"><span class="dib icon icon_close_red mlt-10 mtop3 delete_trigger"></span> </div>
+  <div class="clearboth"></div>
+</div>

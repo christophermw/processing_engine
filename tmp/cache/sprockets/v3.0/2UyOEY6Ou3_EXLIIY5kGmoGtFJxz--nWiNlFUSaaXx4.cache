@@ -1,0 +1,90 @@
+I"Q
+(function() {
+  var activateChosen;
+
+  activateChosen = function() {
+    return $('select.chosen-select').attr("data-placeholder", " ").chosen({
+      allow_single_deselect: false,
+      no_results_text: 'No results found',
+      width: '',
+      inherit_select_classes: true,
+      disable_search_threshold: 5
+    });
+  };
+
+  $('body').on('click', '#add_profile_field', function() {
+    return $.ajax({
+      url: window.new_field_url,
+      dataType: "json",
+      async: false,
+      success: function(data, status, xhr) {
+        $('#add_profile_field_popup_container').html(data.html);
+        showPopup('#profile_field_popup');
+        return activateChosen();
+      }
+    });
+  });
+
+  $('.popup_closer').click(function() {
+    return $(this).closest('.popup').hide();
+  });
+
+  $('body').on('change', '#field_type_box .field_type', function() {
+    var selected;
+    selected = $(this).val();
+    $('#field_type_box .up_field_option').hide();
+    if (selected === 'CalculatedField') {
+      return $('#calculated_field_box').show();
+    } else if (selected === 'ConditionalField') {
+      return $('#conditional_field_box').show();
+    }
+  });
+
+  $('body').on('click', '#add_calculated_cond', function() {
+    var condition;
+    condition = $('#calculated_field_cond_template').html();
+    $('#cal_field_def_area').append(condition);
+    $('.remove_cal_def_entry').show();
+    return activateChosen();
+  });
+
+  $('body').on('click', '.remove_cal_def_entry', function(event) {
+    var parent_box, total_condtions;
+    parent_box = $(this).closest('.cal_def_entry');
+    $(parent_box).remove();
+    total_condtions = $('#cal_field_def_area .cal_def_entry').length;
+    if (total_condtions < 2) {
+      return $('.remove_cal_def_entry').hide();
+    }
+  });
+
+  $('body').on('change', '.cal_def_entry .sub_rule_option', function() {
+    var parent_box, selected_option;
+    parent_box = $(this).closest('.cal_def_entry');
+    $(parent_box).find('.sub_rule').hide();
+    selected_option = $(this).val();
+    if (selected_option === '1') {
+      return $(parent_box).find('div.sub_rule_' + selected_option).show();
+    } else {
+      return $(parent_box).find('.sub_rule_' + selected_option).show();
+    }
+  });
+
+  $(window).resize(function() {
+    return showPopup('#profile_field_popup');
+  });
+
+  $('body').on('click', '#save_profile_field', function() {
+    return $.ajax({
+      url: window.update_profile_fields_url,
+      dataType: "json",
+      data: $('#profile_fields_form').serialize(),
+      type: "POST",
+      success: function(data, status, xhr) {
+        return window.location.reload();
+      }
+    });
+  });
+
+}).call(this);
+:ET

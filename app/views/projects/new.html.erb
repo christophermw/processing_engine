@@ -1,0 +1,35 @@
+<% content_for :site_nav do %>
+  <%= render partial: "projects/wizard_menu" %>
+<% end %>
+<div id="wrapper">
+  <%= form_for @project do |f| %>
+    <div class="page_content">
+      <div class="content_header">Set Up: <span><%= @project.name %></span></div>
+      <div class="BasicInfo mbtm-20">
+        <div class="strong mbtm-6">Basic Info</div>
+        <div class="contentBox">
+          <div class="mbtm-6">
+            <%= f.label :name, class: "label dib w-70" %>
+            <%= f.text_field :name, class: "mrt-6 w-500" %>
+            <div class="icon icon_help_inactive help_tooltip dib mbtm3" id="project_name_help"></div>
+            <div id="not_valid_name" class="fl-lt mtop3 mlt-10 hidden redText">Please enter a valid name</div>
+          </div>
+          <div>
+            <%= f.label :description, class: "label dib w-70" %>
+            <%= f.text_area :description, class: "w-500" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="default_timezone">
+        <%= render partial: "projects/partials/default_timezone", :locals => {f: f} %>
+      </div>
+    </div>
+
+    <div class="btn_container">
+      <%= f.submit "Next", class: "button active", id:"setup_next" %>
+      <%= f.submit "Save", class: "button normal", id:"setup_save" %>
+      <%= link_to "Close", projects_path, class: "button normal close_project" %>
+    </div>
+  <% end %>
+</div>

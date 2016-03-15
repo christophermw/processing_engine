@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Events</title>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <script type="text/javascript">
+      $(function() {
+      <% if Rails.env.qa? || Rails.env.production? %>
+        if (!!!document.referrer.match(/<%= @client.ms_api_host %>/)) {
+          window.location = '/logout';
+        } else {
+          window.location = document.location.href.replace(/login/,"sessions/create");
+        }
+      <% else %>
+        window.location = document.location.href.replace(/login/,"sessions/create");
+      <% end %>
+      });
+    </script>
+  </body>
+</html>

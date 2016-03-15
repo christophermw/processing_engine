@@ -1,0 +1,17 @@
+<div class="user_profile_entry">
+  <div class="field field_1"><%= idx %></div>
+  <% if field.type == 'EventField' %>
+    <div class="field field_2"><%= field.name %></div>
+  <% else %>
+    <div class="field field_2 edit_link" id="<%= field.id %>">
+      <span class="dib icon icon_edit w-16 mrt-6 mbtm5"></span>
+      <span><%= field.name %></span>
+    </div>
+  <% end %>
+  <div class="field field_3"><%= field.abbreviated_type %></div>
+  <div class="field field_4"><%= field.operands_string %></div>
+  <div class="field field_5"><select class="w-140" disabled><option><%= field.datatype.capitalize %></option></select></div>
+  <div class="field field_6"><%= field.created_at.strftime('%m/%d/%Y %l:%M') %></div>
+  <div class="field field_7"><%= field.updated_at.strftime('%m/%d/%Y %l:%M') %></div>
+  <div class="clearboth"></div>
+</div>

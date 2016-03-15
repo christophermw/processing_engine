@@ -1,0 +1,42 @@
+#existing_tags_box{padding: 0 !important;}
+
+#existing_tags_box .table_header .column{font-weight: bold;}
+#existing_tags_box .column{margin-right:5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block;}
+#existing_tags_box .tag_name{margin-left:15px;width: 200px;}
+#existing_tags_box .fields{margin-left:15px;width: 40px;}
+#existing_tags_box .status{margin-left:15px;width: 50px;font-weight: bold;}
+#existing_tags_box .created_by{margin-left:15px;width: 100px;}
+#existing_tags_box .created_on{margin-left:15px;width: 100px;}
+#existing_tags_box .modified{margin-left:15px;width: 100px;}
+
+#existing_tags_box .tag_entry .tag_name{color: #1C818A;margin-left: 0 !important;width:185px;}
+#existing_tags_box .tag_entry .fields{text-align: center}
+#existing_tags_box .status.active{color: #257200;}
+#existing_tags_box .status.inactive{color:#af2316;}
+
+
+#add_tag_popup .header .column{font-weight: bold;display: inline-block;}
+#add_tag_popup .field{width: 300px;margin-right: 15px;}
+#add_tag_popup .data_type{width: 120px;}
+
+#fields_area .field_entry .remove_field_entry, #fields_area .nested_field_entry .remove_nested_field_entry{margin-left:15px;display: inline-block; width: 16px;margin-bottom: -3px;}
+#fields_area .column{margin-right:5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block;}
+#fields_area .table_header .column{font-weight: bold;}
+
+/*
+#fields_table{overflow: auto;min-height: 50px;}
+#fields_table .table_header .column{font-weight: bold;}
+#fields_table #field_entry_area{overflow: auto;}
+#fields_table #field_entry_area .remove_field_entry{margin-left: 85px;display: inline-block; width: 16px;}
+#fields_table .column{margin-right:5px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block;}
+#fields_table .field_name{margin-left:15px;width: 300px;}
+#fields_table .data_type{margin-left:15px;width: 120px;}
+*/
+
+/*#fields_box .chosen-container-multi{position: static !important;}*/
+#fields_box .chosen-container-active .chosen-choices{border: 1px solid #AAA !important; box-shadow: none !important; border-bottom: none !important;}
+#fields_box .chosen-choices{height: 20px !important;}
+#fields_box .search-field input{height: 20px !important;margin: 0 !important;}
+.search-choice{border: none !important;background: none !important;padding:0 !important;margin:0 !important;}
+.search-choice .search-choice-close{background-image: none !important;display: none !important;}
+

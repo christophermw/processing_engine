@@ -1,0 +1,64 @@
+<div id="add_tag_popup" class="popup hidden">
+  <div class="overlay_bg"></div>
+  <div class="overlay">
+    <div class="popup_header">
+      <div class="dib header_title">Add Tag</div>
+      <div class="dib icon_close_blue fl-rt mrt-10 mtop-10 popup_closer"></div>
+      <div class="clearboth"></div>
+    </div>
+    <div class="content_area">
+      <div class="tag_area">
+      <%= form_tag update_tags_project_url(@project), id: "tag_form" do %>
+        <div class="notice_cnt hidden"></div>
+        <div class="basic_info mbtm-10">
+          <div class="mbtm-6 strong">Basic Details</div>
+          <div class="tag_details dark_contentBox">
+            <%= hidden_field_tag 'project[tags_attributes][0][id]', @tag.id, id: "tag_id" %>
+            <div class="mbtm-6">
+              <%= label_tag 'project[tags_attributes][0][name]', 'Name', class: "w-70 dib label" %>
+              <%= text_field_tag 'project[tags_attributes][0][name]', @tag.name, class: "w-500", id: "tag_name" %>
+            </div>
+            <div>
+              <%= label_tag 'project[tags_attributes][0][description]', 'Description', class: "w-70 dib label" %>
+              <%= text_field_tag 'project[tags_attributes][0][description]', @tag.description, class: "w-500", id: "tag_description" %>
+            </div>
+          </div>
+        </div>
+        <div id="fields_area">
+          <div class="mbtm-6 strong" id="tag_fields">Fields: <span id="field_entries"><%= @tag_fields.count %></span> </div>
+           <div id="fields_table" class="dark_contentBox p-0">
+             <div class="table_header hidden" style="padding: 10px 0 5px 15px;margin-bottom: 0;">
+               <div class="column field_name mlt-15">Field Name</div>
+               <div class="column data_type" style="margin-left: 250px;">Data Type</div>
+             </div>
+             <div id="fields_entry_area" class="mlt-10">
+               <div id="fields_box">
+                <% @tag_fields.each_with_index do |f, idx| %>
+                  <%= render partial: "projects/tags/tag_field", locals: { field: f, idx: idx } %>
+                <% end %>
+               </div>
+             </div>
+             <div id="add_tag_fields" class="dib button popup_active_btn mlt-30 mtop-10 mbtm-10" style="padding: 2px 14px;cursor:pointer">+</div>
+           </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <div class="button_holder">
+      <div class="dib button active mrt-15" id="save_tag">Save</div>
+      <div class="dib button normal popup_closer">Close</div>
+    </div>
+  </div>
+</div>
+
+<template id="tag_field_entry_template">
+  <%= render partial: "projects/tags/tag_field", locals: { field: Field.new, idx: "{{idx}}" } %>
+</template>
+
+<template id="tags_field_template">
+  <%= hidden_field_tag "project[tags_attributes][0][tags_fields_attributes][{{idx}}][field_id]", "{{field_id}}", class: "tags_field" %>
+</template>
+
+<template id="nested_field_template">
+  <%= render partial: "projects/tags/nested_field", locals: { field: Field.new, idx: "{{idx}}", parent_idx: "{{parent_idx}}" } %>
+</template>

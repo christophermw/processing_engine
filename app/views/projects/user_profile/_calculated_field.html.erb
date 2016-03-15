@@ -1,0 +1,20 @@
+<div id="calculated_field_box" class="light_contentBox mbtm-10 mlt-25 <%= @field.calculated_field? ? '' : 'hidden' %> up_field_option">
+  <div id="cal_field_def_area">
+    <div class="strong mbtm-6">Field Definition</div>
+    <% @expressions.each_with_index do |e,idx| %>
+      <% if idx == 0 %>
+        <%= hidden_field_tag "project[fields_attributes][0][expressions_attributes][0][id]", e.id %>
+        <%= hidden_field_tag "project[fields_attributes][0][expressions_attributes][0][position]", e.position, class: 'position' %>
+        <%= hidden_field_tag "project[fields_attributes][0][expressions_attributes][0][use_parent_id_for_field]", nil, id: 'use_parent_id_for_field' %>
+        <%= select_tag "project[fields_attributes][0][expressions_attributes][0][field_id]", options_from_collection_for_select(@fields, :id, :name, e.field_id), class: "dib w-150 mrt-10 chosen-select", id: "first_expression_field" %>
+      <% else %>
+        <%= render partial: 'projects/user_profile/calculated_field_expression', locals: { expression: e, idx: idx } %>
+      <% end %>
+    <% end %>
+  </div>
+  <div id="add_calculated_cond" class="button popup_active_btn dib mtop-10 cp" style="padding: 0px 8px">+</div>
+</div>
+
+<template id="calculated_field_cond_template">
+  <%= render partial: 'projects/user_profile/calculated_field_expression', locals: { expression: Expression.new, idx: '{{idx}}' } %>
+</template>
